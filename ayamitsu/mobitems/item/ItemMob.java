@@ -2,15 +2,13 @@ package ayamitsu.mobitems.item;
 
 import java.util.List;
 
-import ayamitsu.mobitems.MobItems;
-import ayamitsu.mobitems.client.renderer.RenderingRegistry;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
+import ayamitsu.mobitems.MobItems;
+import ayamitsu.mobitems.client.renderer.RenderingRegistry;
 
 public class ItemMob extends Item {
 
@@ -39,7 +37,6 @@ public class ItemMob extends Item {
 			itemStack = MobItems.convertMobToItem(name);
 			list.add(itemStack);
 		}
-
 	}
 
 }

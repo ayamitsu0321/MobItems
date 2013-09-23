@@ -1,16 +1,13 @@
 package ayamitsu.mobitems;
 
-import ayamitsu.mobitems.client.renderer.ItemMobRenderer;
-import ayamitsu.mobitems.item.ItemMob;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
+import ayamitsu.mobitems.item.ItemMob;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -47,7 +44,7 @@ public class MobItems {
 
 		conf.save();
 
-		this.mobItem = new ItemMob(mobItemId).setUnlocalizedName("ayamitsu.mobitems.mobItem").setCreativeTab(this.mobItemsTab);
+		this.mobItem = new ItemMob(mobItemId).setUnlocalizedName("ayamitsu.mobitems.mobItem").setTextureName("mobitems:itemmob").setCreativeTab(this.mobItemsTab);
 
 		LanguageRegistry.instance().addNameForObject(this.mobItem, "en_US", "MobItem");
 	}

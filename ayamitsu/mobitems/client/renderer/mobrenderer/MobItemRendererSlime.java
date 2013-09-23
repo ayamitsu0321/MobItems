@@ -8,10 +8,9 @@ import net.minecraft.entity.monster.EntitySlime;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.client.FMLClientHandler;
-
 import ayamitsu.mobitems.client.renderer.IMobItemRenderer;
 import ayamitsu.util.reflect.Reflector;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class MobItemRendererSlime implements IMobItemRenderer {
 

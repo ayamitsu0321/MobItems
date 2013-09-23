@@ -1,27 +1,13 @@
 package ayamitsu.mobitems.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
-import ayamitsu.mobitems.item.ItemMob;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-/**
- * IItemRenderer
- *   ItemRenderType
- *     ENTITY
- *     EQUIPPED
- *     INVENTORY
- *     FIRST_PERSON_MAP
- *   ItemRendererHelper
- *     ENTITY_ROTATION
- *     ENTITY_BOBBING
- *     EQUIPPED_BLOCK
- *     BLOCK_3D
- *     INVENTORY_BLOCK
- */
+import org.lwjgl.opengl.GL11;
+
+import ayamitsu.mobitems.item.ItemMob;
 
 public class ItemMobRenderer implements IItemRenderer {
 

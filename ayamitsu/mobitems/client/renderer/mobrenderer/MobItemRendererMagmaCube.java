@@ -1,8 +1,8 @@
 package ayamitsu.mobitems.client.renderer.mobrenderer;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntitySlime;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class MobItemRendererMagmaCube extends MobItemRendererSlime {
 

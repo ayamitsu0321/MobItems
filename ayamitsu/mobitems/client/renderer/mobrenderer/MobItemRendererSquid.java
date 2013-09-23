@@ -6,9 +6,8 @@ import net.minecraft.entity.passive.EntitySquid;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.client.FMLClientHandler;
-
 import ayamitsu.mobitems.client.renderer.IMobItemRenderer;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class MobItemRendererSquid implements IMobItemRenderer {
 

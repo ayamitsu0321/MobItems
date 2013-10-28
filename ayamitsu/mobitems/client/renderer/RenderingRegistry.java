@@ -49,8 +49,13 @@ public final class RenderingRegistry {
 	private static final List<IMobItemRenderer> renderers = new ArrayList<IMobItemRenderer>();
 
 	public static void registerRenderer(String name, IMobItemRenderer renderer) {
-		nameList.add(name);
-		renderers.add(renderer);
+		if (name != null) {
+			nameList.add(name);
+		}
+
+		if (renderer != null) {
+			renderers.add(renderer);
+		}
 	}
 
 	public static String[] getNames() {
@@ -138,6 +143,21 @@ public final class RenderingRegistry {
 		registerRenderer("Squid", new MobItemRendererSquid());
 		registerRenderer("Slime", new MobItemRendererSlime());
 		registerRenderer("LavaSlime", new MobItemRendererMagmaCube());
+	}
+
+	// call on MobItems#postInit
+	private static void addRendererForMods() {
+		Class clazz;
+		String name;
+
+		for (Map.Entry<Class, String> entry : (Set<Map.Entry<Class, String>>)EntityUtils.getClassToStringMapping().entrySet()) {
+			clazz = entry.getKey();
+			name = entry.getValue();
+
+			if (EntityUtils.isLivingClass(clazz) && !nameList.contains(name)) {
+				registerRenderer(name, null);
+			}
+		}
 	}
 
 }

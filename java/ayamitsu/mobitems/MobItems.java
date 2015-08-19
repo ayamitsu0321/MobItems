@@ -1,12 +1,9 @@
 package ayamitsu.mobitems;
 
-import ayamitsu.mobitems.AbstractProxy;
-import ayamitsu.mobitems.client.ModelLoaderMobItems;
 import ayamitsu.mobitems.item.ItemMob;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,7 +39,7 @@ public class MobItems {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        mobItem = new ItemMob().setUnlocalizedName("mobitem").setCreativeTab(tabMobItem);
+        mobItem = new ItemMob().setUnlocalizedName("mobitems.mobitem").setCreativeTab(tabMobItem);
         GameRegistry.registerItem(mobItem, "mobitem");
         this.proxy.preInit();
     }

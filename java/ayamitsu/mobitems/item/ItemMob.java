@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,7 +33,7 @@ public class ItemMob extends Item {
         NBTTagCompound nbt = stack.getTagCompound();
 
         if (nbt != null && nbt.hasKey("Mob")) {
-            tooltip.add(nbt.getString("Mob"));
+            tooltip.add(StatCollector.translateToLocal("entity." + nbt.getString("Mob") + ".name"));
         }
     }
 

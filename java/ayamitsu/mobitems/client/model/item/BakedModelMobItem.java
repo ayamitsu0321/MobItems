@@ -1,6 +1,6 @@
 package ayamitsu.mobitems.client.model.item;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -13,8 +13,6 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -27,6 +25,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.vecmath.Matrix4f;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ayamitsu0321 on 2015/08/17.
@@ -35,6 +34,13 @@ public class BakedModelMobItem implements IFlexibleBakedModel, ISmartItemModel, 
 
     Entity displayEntity = null;
     ItemStack itemStack = null;
+
+    public static RescaleRegistry rescaleRegistry = new RescaleRegistry();
+
+    {
+        this.rescaleRegistry.register("Ghast", 0.25F);
+        this.rescaleRegistry.register("Giant", 0.167F);// 1.0F / 6.0F
+    }
 
     public BakedModelMobItem() {
     }
@@ -78,6 +84,13 @@ public class BakedModelMobItem implements IFlexibleBakedModel, ISmartItemModel, 
         GlStateManager.pushMatrix();
         GlStateManager.rotate(-180F, 0.0F, 1.0F, 0.0F);
         GlStateManager.translate(-0.5F, 0.0F, -0.5F);
+
+        String name = EntityList.getEntityString(entity);
+        if (this.rescaleRegistry.contains(name)) {
+            float scale = this.rescaleRegistry.getScale(name);
+            GlStateManager.scale(scale, scale, scale);
+        }
+
         Minecraft.getMinecraft().getRenderManager().doRenderEntity(entity, 0, 0, 0, 0, 0, true);
         GlStateManager.popMatrix();
     }
@@ -116,7 +129,7 @@ public class BakedModelMobItem implements IFlexibleBakedModel, ISmartItemModel, 
     public Pair<IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
         BakedModelMobItem bakeModel = this;//new BakedModelMobItem();
 
-        switch(cameraTransformType){
+        switch (cameraTransformType) {
             case GUI:
                 RenderItem.applyVanillaTransform(getItemCameraTransforms().gui);
                 break;
@@ -139,8 +152,26 @@ public class BakedModelMobItem implements IFlexibleBakedModel, ISmartItemModel, 
     public IBakedModel handleItemState(ItemStack stack) {
         BakedModelMobItem bakedModel = this;//new BakedModelMobItem();
         bakedModel.itemStack = stack;
-
         return bakedModel;
+    }
+
+    static class RescaleRegistry {
+        /**
+         * mob name, scale *
+         */
+        private Map<String, Float> mapping = Maps.newHashMap();
+
+        public void register(String name, float scale) {
+            this.mapping.put(name, scale);
+        }
+
+        public float getScale(String name) {
+            return this.mapping.get(name).floatValue();
+        }
+
+        public boolean contains(String name) {
+            return this.mapping.containsKey(name);
+        }
     }
 
 }
